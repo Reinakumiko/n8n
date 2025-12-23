@@ -17,6 +17,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - name: Normalize image owner
+        run: |
+          echo "IMAGE_OWNER=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@53851d14592bedcffcf25ea515637cff71ef929a # v3.3.0
@@ -38,4 +41,4 @@ jobs:
           provenance: false
           push: true
           tags: |
-            ghcr.io/${{ toLower(github.repository_owner) }}/n8n-benchmark:latest
+            ghcr.io/${{ env.IMAGE_OWNER }}/n8n-benchmark:latest
