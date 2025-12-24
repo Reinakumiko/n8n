@@ -87,8 +87,8 @@ class BuildContext {
 
 	buildMatrix(platforms) {
 		const runners = {
-			'linux/amd64': 'blacksmith-4vcpu-ubuntu-2204',
-			'linux/arm64': 'blacksmith-4vcpu-ubuntu-2204-arm',
+		  'linux/amd64': 'ubuntu-22.04',   // 官方 GitHub runner
+		  'linux/arm64': 'ubuntu-22.04',   // 官方 runner 目前也支持 ARM
 		};
 
 		const matrix = {
