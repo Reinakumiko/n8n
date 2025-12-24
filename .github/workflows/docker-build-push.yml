@@ -104,7 +104,11 @@ jobs:
           cat "$GITHUB_OUTPUT" | grep "_tags=" | while IFS='=' read -r key value; do
             echo "${key}: ${value%%,*}..."  # Show first tag for brevity
           done
-
+      - name: Set up Docker Buildx (container driver)
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container
+    
       - name: Login to Docker registries
         if: needs.determine-build-context.outputs.push_enabled == 'true'
         uses: ./.github/actions/docker-registry-login
